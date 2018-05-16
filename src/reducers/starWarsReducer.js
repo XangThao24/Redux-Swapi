@@ -3,6 +3,7 @@ const initialState = {
   // define a few properties here.
   // Array chars, Boolean fetching, Boolean fetched, null error.
   starWarsChar: [],
+  isFetching: true,
   error: null
 
 };
@@ -12,12 +13,10 @@ export const charsReducer = (state = initialState, action) => {
     // action types should be FETCHING, FETCHED, and ERROR
     // your switch statement should handle all of these cases.
     case FETCHED:
-      let newArray = [];
-      newArray.concat(action.payload);
-      let newObj = Object.assign({}, state, {starWarsChar: newArray});
+      let newObj = Object.assign({}, state, {isFetching: false, starWarsChar: state.starWarsChar.concat(action.payload)});
       return newObj;
-    case ERROR:
-      return Object.assign({}, state, {error: action.error});
+    //case ERROR:
+      //return Object.assign({}, state, {error: action.error});
     default:
       return state;
   }

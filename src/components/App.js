@@ -15,8 +15,9 @@ class App extends Component {
     return (
       <div>
         <h1>Starwars Character</h1>
+        {this.props.char.isFetching ? <div>Loading...........</div> : null}
           <ul>
-            {this.props.starWarsChar.map(char => {
+            {this.props.char.starWarsChar.map(char => {
               console.log(char)
               return <li key={char.name}>{char.name}</li>;
             })}
@@ -29,8 +30,9 @@ class App extends Component {
 // our mapDispatchToProps needs to have two properties inherited from state
 // the chars and the fetching boolean
 const mapStateToProps = state => {
-  const { charsReducer } = state
-  return charsReducer
+  return {
+    char: state.charsReducer
+  }
 };
 
 export default connect(mapStateToProps, { fetchStarWarsChar })(App);

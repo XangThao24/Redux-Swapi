@@ -3,19 +3,18 @@ import { connect } from 'react-redux';
 
 import logo from '../logo.svg';
 import '../styles/App.css';
-// pull in actions from action/index
-import {fetchStarWarsChar} from '../actions';
+import { fetchStarWarsChar } from '../actions';
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchStarWarsChar();
   }
   render() {
-    console.log(this.props);
     return (
       <div>
         <h1>Starwars Character</h1>
-        {this.props.char.isFetching ? <div>Loading...........</div> : null}
+        {this.props.char.isFetching ? <div>.........Loading</div> : null}
+        {this.props.char.error ? <div>404 Error</div> : null}
           <ul>
             {this.props.char.starWarsChar.map(char => {
               console.log(char)
